@@ -118,12 +118,10 @@
             <h1 class="typed-content"></h1>
         </div>
     </header>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             typeText("3D Labs", document.querySelector(".typed-content"));
         });
-
         function typeText(text, element) {
             let index = 0;
             const intervalId = setInterval(function() {
@@ -135,7 +133,6 @@
                 }
             }, 100);
         }
-
         // Function to check if an element is in viewport
         function isInViewport(element) {
             const rect = element.getBoundingClientRect();
@@ -146,7 +143,19 @@
                 rect.right <= (window.innerWidth || document.documentElement.clientWidth)
             );
         }
+
+        // Function to start typing animation when the videos section is in viewport
+        function startTypingAnimation() {
+            const secondTypedContent = document.querySelector(".typed-content-second");
+            if (isInViewport(secondTypedContent)) {
+                typeText("Take a Sneak Peek at Terablade Antivirus 3", secondTypedContent);
+                // Remove the scroll event listener after the animation starts
+                window.removeEventListener('scroll', startTypingAnimation);
+            }
         }
+
+        // Listen for scroll events to start typing animation
+        window.addEventListener('scroll', startTypingAnimation);
     </script>
 
     <div class="container">
