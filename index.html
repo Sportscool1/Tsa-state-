@@ -18,9 +18,56 @@
             background-image: url('space_bg.jpg');
             background-size: cover;
             background-position: center;
-            padding: 80px 0;
+            padding: 20px 0;
             text-align: center;
             position: relative;
+        }
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 999;
+        }
+        .menu-icon .line {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: transform 0.4s, opacity 0.4s;
+        }
+        .menu-icon.open .line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .menu-icon.open .line:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-icon.open .line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        .menu {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 998;
+        }
+        .menu.open {
+            display: block;
+        }
+        .menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .menu a:hover {
+            color: #4CAF50;
         }
         .typing-text {
             display: inline-block;
@@ -112,16 +159,85 @@
     </style>
 </head>
 <body>
-    <header>
-        <img class="logo" src="=B.png" alt="">
-        <div class="typing-text">
-            <h1 class="typed-content"></h1>
+    <!-- Home Section -->
+    <section id="home">
+        <header>
+            <img class="logo" src="=B.png" alt="">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="menu" id="menu">
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#faq">FAQs</a>
+            </div>
+            <div class="typing-text">
+                <h1 class="typed-content"></h1>
+            </div>
+        </header>
+        <div class="container">
+            <p>Your trusted partner in Dreams and creations.</p>
+            <p>Reserve your makerspace.</p>
         </div>
-    </header>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About us</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>3D LABS Powered by Nexat AI</h3>
+                    <p>Here at 3D LABS we welcome creativity and imagination into our world</p>
+                </div>
+                <div class="feature">
+                    <h3>Contact Us :</h3>
+                    <p>3dLabs@gmail.com</p>
+                    <a href="mailto:3dLabs@gmail.com">3dLabs@gmail.com</a>
+                </div>
+                <div class="feature">
+                    <h3>Social Media:</h3>
+                    <a href="#">Join our Discord Community</a>
+                    <p></p>
+                    <a href="#">Join our Twitter Community</a>
+                    <p></p>
+                    <a href="#">Join our Instagram Community</a>
+                    <p></p>
+                    <a href="#">Join our Youtube Community</a>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faq">
+        <div class="container">
+            <h2>FAQs</h2>
+            <div class="tab">
+                <div class="tab-label" onclick="toggleTab('tab1')">Question 1</div>
+                <div class="tab-content" id="tab1">
+                    <p>Answer to question 1.</p>
+                </div>
+            </div>
+            <div class="tab">
+                <div class="tab-label" onclick="toggleTab('tab2')">Question 2</div>
+                <div class="tab-content" id="tab2">
+                    <p>Answer to question 2.</p>
+                </div>
+            </div>
+            <!-- Add more tabs as needed -->
+        </div>
+    </section>
+
+    <!-- JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             typeText("3D Labs", document.querySelector(".typed-content"));
         });
+
         function typeText(text, element) {
             let index = 0;
             const intervalId = setInterval(function() {
@@ -133,72 +249,13 @@
                 }
             }, 100);
         }
-        // Function to check if an element is in viewport
-        function isInViewport(element) {
-            const rect = element.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-        // Function to start typing animation when the videos section is in viewport
-        function startTypingAnimation() {
-            const secondTypedContent = document.querySelector(".typed-content-second");
-            if (isInViewport(secondTypedContent)) {
-                typeText("Take a Sneak Peek at Terablade Antivirus 3", secondTypedContent);
-                // Remove the scroll event listener after the animation starts
-                window.removeEventListener('scroll', startTypingAnimation);
-            }
-        }
-        // Listen for scroll events to start typing animation
-        window.addEventListener('scroll', startTypingAnimation);
-    </script>
-    <div class="container">
-        <p>Your trusted partner in Dreams and creations.</p>
-        <p>Reserve your makerspace.</p>
-    </div>
- <div id="features" class="container">
-        <h2>About us</h2>
-        <div class="features">
-             <div class="feature">
-                <h3>3D LABS Powered by Nexat AI</h3>
-                <p>Here at 3D LABS we welcome creativaty and imagination into our world</p>
-            </div>
-            <div class="feature">
-                <h3>Contact Us :</h3>
-                <p>3dLabs@gmail.com</p>
-                <a href="">3dLabs@gmail.com</a>
-            </div>
-            <div class="feature">
-                <h3>social media:</h3>
-                <p></p>
-                <a href="">Join our Discord Comunity</a>
-                <p></p>
-                <a href="">Join our Twitter Comunity</a>
-                <p></p>
-                 <a href="">Join our Instagram Comunity</a>
-                <p></p>
-                 <a href="">Join our Youtube Comunity</a>
-                <p></p>
-            </div>
-                <div class="container">
-        <h2>FAQs</h2>
-        <div class="tab">
-            <div class="tab-label" onclick="toggleTab('tab1')">Question 1</div>
-            <div class="tab-content" id="tab1">
-                <p>Answer to question 1.</p>
-            </div>
-        </div>
-        <div class="tab">
-            <div class="tab-label" onclick="toggleTab('tab2')">Question 2</div>
-            <div class="tab-content" id="tab2">
-                <p>Answer to question 2.</p>
-            </div>
-        </div>
-        <!-- Add more tabs as needed -->
-    </div>
 
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('open');
+            const menuIcon = document.querySelector('.menu-icon');
+            menuIcon.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
