@@ -144,9 +144,6 @@
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-        .feature h3 {
-            color: #fff;
-        }
         .promo-video {
             width: 100%;
             margin-top: 40px;
@@ -156,6 +153,59 @@
                 width: 100%;
             }
         }
+
+        /* Login Page Styles */
+        .login-container {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .login-input {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 200px;
+        }
+        .login-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Login/Signup Button Styles */
+        .login-signup-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 999;
+        }
+        .login-signup-btn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -163,6 +213,7 @@
     <section id="home">
         <header>
             <img class="logo" src="=B.png" alt="">
+            <button class="login-signup-btn" onclick="toggleLogin()">Login/Signup</button>
             <div class="menu-icon" onclick="toggleMenu()">
                 <div class="line"></div>
                 <div class="line"></div>
@@ -234,6 +285,16 @@
         </div>
     </section>
 
+    <!-- Login Form -->
+    <div class="login-container" id="loginContainer" style="display: none;">
+        <h2>Login</h2>
+        <form class="login-form">
+            <input type="text" class="login-input" placeholder="Username">
+            <input type="password" class="login-input" placeholder="Password">
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+
     <!-- JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -257,6 +318,11 @@
             menu.classList.toggle('open');
             const menuIcon = document.querySelector('.menu-icon');
             menuIcon.classList.toggle('open');
+        }
+
+        function toggleLogin() {
+            const loginContainer = document.getElementById('loginContainer');
+            loginContainer.style.display = loginContainer.style.display === 'none' ? 'block' : 'none';
         }
     </script>
 </body>
